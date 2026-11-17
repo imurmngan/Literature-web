@@ -73,6 +73,54 @@
 @media(max-width:700px){.culture-orbit{min-height:570px}.culture-ring{width:78vw}.culture-center{width:145px;height:145px}.culture-center strong{font-size:12px}.culture-center small{font-size:8px}.culture-node{width:120px;height:120px}.culture-node span{font-size:25px}.culture-node strong{font-size:12px}.node-spirit{top:3%}.node-guest{right:2%;bottom:8%}.node-community{left:2%;bottom:8%}.culture-detail{width:min(310px,86vw);padding:19px}.culture-detail h3{font-size:21px}.epilogue-sky{height:340px}.stilt-house{transform:scale(.72);transform-origin:bottom left;left:4%;bottom:19%}.silhouette{left:48%;font-size:31px}.label-home{font-size:8px}.label-road{font-size:8px;left:33%}.label-sun{font-size:8px}.epilogue-lessons{grid-template-columns:1fr}.knowledge-toggle{min-height:100px;padding:20px;font-size:20px}}
 @media(prefers-reduced-motion:reduce){.hero-art .arrow{animation:none;opacity:1}}
 
+
+/* CINEMATIC SUN JOURNEY — interactive story mode */
+.sun-launch{border:0;padding:0;background:transparent;color:inherit;cursor:pointer;z-index:3}
+.sun-launch:focus-visible{outline:3px solid #fff0b7;outline-offset:8px;border-radius:50%}
+.sun-hint{position:absolute;left:50%;bottom:-2%;transform:translateX(-50%);white-space:nowrap;padding:10px 15px;border:1px solid #ffe6a088;border-radius:99px;background:#3a100dcc;color:#ffe8b4;font:800 10px 'Be Vietnam Pro',sans-serif;letter-spacing:.16em;box-shadow:0 0 25px #ffbd4b55;animation:hintPulse 2s ease-in-out infinite}
+.sun-launch:hover .sun-core{filter:brightness(1.16);transform:scale(1.06)}
+.sun-core{transition:transform .5s,filter .5s}
+.sun-launch:active{transform:scale(.97)}
+@keyframes hintPulse{50%{box-shadow:0 0 36px #ffc44f99;letter-spacing:.22em}}
+.story-mode{position:fixed;inset:0;z-index:3000;background:#160604;color:#fff0d4;display:grid;place-items:center;opacity:0;visibility:hidden;transition:opacity .8s,visibility .8s;overflow:hidden}
+.story-mode.active{opacity:1;visibility:visible}
+.story-mode:before{content:"";position:absolute;inset:-25%;background:radial-gradient(circle at 50% 50%,#9f321b55,transparent 48%);animation:storyAura 8s ease-in-out infinite alternate}
+@keyframes storyAura{to{transform:scale(1.25);opacity:.55}}
+.story-noise{position:absolute;inset:0;opacity:.09;pointer-events:none;background-image:radial-gradient(#ffe4a0 0.7px,transparent .7px);background-size:5px 5px}
+.story-top{position:absolute;z-index:4;top:26px;left:5vw;right:5vw;display:flex;justify-content:space-between;align-items:center;font-size:10px;letter-spacing:.18em;color:#f8d79f}
+.story-progress{position:absolute;z-index:5;left:0;top:0;height:4px;width:0;background:linear-gradient(90deg,#fff0b7,#ffc44f,#df5125);box-shadow:0 0 18px #ffbe4b;transition:width .3s}
+.story-close{border:1px solid #ffe4a066;border-radius:99px;background:#ffffff0c;color:#ffe9c0;padding:10px 15px;cursor:pointer}
+.story-scene{position:absolute;inset:0;display:grid;place-items:center;padding:12vh 9vw 14vh;text-align:center;opacity:0;visibility:hidden;transform:translateY(35px) scale(.97);transition:opacity .9s,transform 1s cubic-bezier(.2,.75,.2,1),visibility .9s}
+.story-scene.current{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
+.story-scene .scene-inner{position:relative;z-index:2;max-width:950px}
+.story-eyebrow{color:#ffc958;font-size:10px;font-weight:800;letter-spacing:.25em;text-transform:uppercase;margin-bottom:22px}
+.story-title{font:700 clamp(42px,8vw,100px)/1.02 'Playfair Display',serif;letter-spacing:-.04em;margin:0 auto 22px;text-shadow:0 8px 45px #0009}
+.story-title em{font-style:normal;color:#ffd16b}
+.story-copy{font-size:clamp(14px,1.6vw,19px);line-height:1.9;color:#f3d5b3;max-width:740px;margin:0 auto}
+.story-orb{width:min(34vw,300px);aspect-ratio:1;border-radius:50%;margin:0 auto 28px;background:radial-gradient(circle at 35% 30%,#fff5c6,#ffc74f 35%,#ed6b2d 63%,#922015 78%);box-shadow:0 0 70px #ff9d3d88,0 0 170px #d94a2588;animation:storyOrb 5s ease-in-out infinite}
+@keyframes storyOrb{50%{transform:scale(1.09);filter:brightness(1.18)}}
+.story-scene .typing{display:inline-block;overflow:hidden;white-space:nowrap;max-width:0;border-right:2px solid #ffd16b;animation:storyType 2.8s steps(42,end) .3s forwards,storyCaret .8s step-end infinite}
+@keyframes storyType{to{max-width:100%}}@keyframes storyCaret{50%{border-color:transparent}}
+.story-scene .scene-symbol{font-size:clamp(58px,10vw,110px);display:block;margin-bottom:20px;filter:drop-shadow(0 0 22px #ffc44f77);animation:symbolFloat 4s ease-in-out infinite}
+@keyframes symbolFloat{50%{transform:translateY(-14px) rotate(4deg)}}
+.story-film{width:min(900px,82vw);height:min(48vh,420px);margin:26px auto 0;border:9px solid #d49a4a;border-radius:8px;position:relative;overflow:hidden;background:linear-gradient(140deg,#542017,#b45b2a 48%,#31100c);box-shadow:0 0 0 2px #6d3b1d,0 20px 70px #0009}
+.story-film:before,.story-film:after{content:"";position:absolute;left:0;right:0;height:14px;z-index:2;background:repeating-linear-gradient(90deg,#160806 0 19px,transparent 19px 34px)}
+.story-film:before{top:0}.story-film:after{bottom:0}
+.story-film-art{position:absolute;inset:14px 0;background:linear-gradient(180deg,#eaa65b 0%,#9d4628 42%,#32110d 100%);overflow:hidden}
+.story-film-art:before{content:"";position:absolute;inset:20% -5% 0;background:#40140f;clip-path:polygon(0 45%,15% 12%,28% 47%,44% 4%,60% 48%,77% 16%,100% 42%,100% 100%,0 100%);animation:filmPan 10s linear infinite alternate}
+.story-film-art:after{content:"";position:absolute;left:0;right:0;bottom:0;height:35%;background:repeating-linear-gradient(90deg,#6c2c1b 0 9px,#35100c 9px 14px);clip-path:polygon(0 30%,100% 0,100% 100%,0 100%);opacity:.8}
+.story-film-sun{position:absolute;z-index:1;right:13%;top:8%;width:24%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#fff0b3,#ffb53e 62%,#d64b24);box-shadow:0 0 55px #ffc45b;animation:storyOrb 6s infinite}
+.story-film-caption{position:absolute;z-index:3;left:0;right:0;bottom:23px;text-align:center;font:600 clamp(14px,2vw,22px) 'Playfair Display',serif;color:#fff0ca;text-shadow:0 2px 9px #000}
+@keyframes filmPan{to{transform:translateX(-5%) scale(1.08)}}
+.story-controls{position:absolute;z-index:6;bottom:28px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px}
+.story-next{border:1px solid #ffdf9c77;border-radius:99px;background:#ffd16b;color:#45130b;padding:13px 22px;font-weight:800;cursor:pointer;box-shadow:0 8px 30px #0005}
+.story-skip{border:1px solid #ffe4a044;border-radius:99px;background:#ffffff0b;color:#f5d8b4;padding:12px 18px;font-size:11px;cursor:pointer}
+.story-dots{position:absolute;z-index:5;bottom:91px;left:50%;transform:translateX(-50%);display:flex;gap:7px}
+.story-dots i{width:6px;height:6px;border-radius:9px;background:#fff2c477;transition:width .3s,background .3s}
+.story-dots i.on{width:25px;background:#ffd16b}
+@media(max-width:700px){.sun-hint{font-size:8px;padding:8px 10px}.story-top{top:16px;font-size:8px}.story-scene{padding:11vh 6vw 16vh}.story-film{width:90vw;height:38vh;border-width:6px}.story-film-caption{font-size:14px}.story-controls{bottom:18px}.story-dots{bottom:78px}}
+@media(prefers-reduced-motion:reduce){.sun-hint,.story-orb,.story-scene .scene-symbol,.story-film-art:before{animation:none!important}}
+
 </style>
 </head>
 <body>
@@ -84,7 +132,7 @@
 </header>
 <main>
 <section class="hero" id="home">
-<div class="hero-art" aria-hidden="true"><div class="orbit"></div><div class="sun-core"><div class="sun-face">☼</div></div><div class="arrow"></div><span class="spark s1">✦</span><span class="spark s2">✧</span><span class="spark s3">✦</span></div>
+<button class="hero-art sun-launch" id="sunLaunch" type="button" aria-label="Chạm vào Mặt Trời để bắt đầu hành trình"><span class="orbit"></span><span class="sun-core"><span class="sun-face">☼</span></span><span class="arrow"></span><span class="spark s1">✦</span><span class="spark s2">✧</span><span class="spark s3">✦</span><span class="sun-hint">CHẠM VÀO MẶT TRỜI ✦</span></button>
 <div class="hero-inner">
 <div class="eyebrow"><span>✦</span> SỨC SỐNG CỦA SỬ THI <span>✦</span></div>
 <h1>Đăm Săn đi bắt <em>Nữ Thần Mặt Trời</em></h1>
@@ -175,6 +223,21 @@
 </section>
 </main>
 <footer class="footer"><span class="footer-sun">☼</span><h2>Ánh sáng của sử thi</h2><p>Đăm Săn đi bắt Nữ Thần Mặt Trời<br>Khám phá văn học · Văn hóa Ê-đê · Khát vọng và giới hạn</p><p class="tiny">Nội dung được biên soạn dựa trên tài liệu thuyết trình được cung cấp.</p></footer>
+
+<div class="story-mode" id="storyMode" aria-hidden="true">
+ <div class="story-noise"></div><div class="story-progress" id="storyProgress"></div>
+ <div class="story-top"><span>☼ HÀNH TRÌNH SỬ THI · CINEMATIC MODE</span><button class="story-close" id="storyClose" type="button">✕ Đóng hành trình</button></div>
+ <section class="story-scene current"><div class="scene-inner"><div class="story-eyebrow">MỘT SỬ THI · MỘT KHÁT VỌNG</div><div class="story-orb"></div><h2 class="story-title">Đăm Săn đi bắt<br><em>Nữ Thần Mặt Trời</em></h2><p class="story-copy">Một hành trình vượt khỏi giới hạn của con người bắt đầu…</p></div></section>
+ <section class="story-scene"><div class="scene-inner"><span class="scene-symbol">🌄</span><div class="story-eyebrow">CHƯƠNG I · ĐẠI NGÀN Ê-ĐÊ</div><h2 class="story-title">Nơi câu chuyện<br><em>được cất lời</em></h2><p class="story-copy">Từ không gian buôn làng, qua lời kể khan được lưu truyền qua nhiều thế hệ, một thế giới sử thi hiện ra với những khát vọng lớn lao.</p></div></section>
+ <section class="story-scene"><div class="scene-inner"><span class="scene-symbol">🏹</span><div class="story-eyebrow">CHƯƠNG II · NGƯỜI ANH HÙNG</div><h2 class="story-title">Một quyết tâm<br><em>không lay chuyển</em></h2><p class="story-copy">Đăm Săn lên đường đến nhà Nữ thần Mặt Trời, bất chấp những lời khuyên can và hiểm nguy phía trước.</p></div></section>
+ <section class="story-scene"><div class="scene-inner"><span class="scene-symbol">☀</span><div class="story-eyebrow">CHƯƠNG III · ĐỐI DIỆN THẦN LINH</div><h2 class="story-title">Khát vọng chạm đến<br><em>ánh sáng</em></h2><p class="story-copy">Trước Nữ thần Mặt Trời, khát vọng của con người đối diện với quyền năng thần linh và trật tự tự nhiên.</p></div></section>
+ <section class="story-scene"><div class="scene-inner"><div class="story-eyebrow">CHƯƠNG IV · THƯỚC PHIM ĐẠI NGÀN</div><h2 class="story-title">Những hình ảnh<br><em>còn đọng lại</em></h2><div class="story-film"><div class="story-film-art"><div class="story-film-sun"></div></div><div class="story-film-caption">Không gian nghi lễ và nhịp sống cộng đồng Ê-đê</div></div><p class="story-copy" style="margin-top:18px">Một thước phim ngắn tái hiện không gian văn hóa đại ngàn.</p></div></section>
+ <section class="story-scene"><div class="scene-inner"><span class="scene-symbol">✦</span><div class="story-eyebrow">CHƯƠNG V · ĐIỀU CÒN LẠI</div><h2 class="story-title">Khát vọng cần có<br><em>sự tỉnh táo</em></h2><p class="story-copy">Bi kịch của Đăm Săn nhắc ta rằng lòng can đảm cần đi cùng khả năng lắng nghe, nhận thức giới hạn và tôn trọng quy luật tự nhiên.</p></div></section>
+ <section class="story-scene"><div class="scene-inner"><div class="story-orb"></div><div class="story-eyebrow">HẾT · NHƯNG DƯ ÂM CÒN MÃI</div><h2 class="story-title">Cảm ơn bạn đã<br><em>đi hết hành trình</em></h2><p class="story-copy">Bây giờ, hãy tiếp tục khám phá các phần nội dung tương tác trên website.</p></div></section>
+ <div class="story-dots" id="storyDots"></div>
+ <div class="story-controls"><button class="story-skip" id="storySkip" type="button">Bỏ qua intro</button><button class="story-next" id="storyNext" type="button">Bắt đầu hành trình →</button></div>
+</div>
+
 <button class="backtop" id="backtop" aria-label="Về đầu trang">↑</button><div class="toast" id="toast" role="status"></div>
 <script>
 const questions=[
@@ -220,6 +283,41 @@ document.querySelectorAll(".fade-up").forEach(el=>observer.observe(el));
 const progress=$("progress"),backtop=$("backtop");
 window.addEventListener("scroll",()=>{const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=(max>0?scrollY/max*100:0)+"%";backtop.classList.toggle("show",scrollY>500)},{passive:true});
 backtop.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+
+/* Sun click launches the cinematic sequence; each scene advances automatically. */
+(()=>{
+ const launch=document.getElementById('sunLaunch'),mode=document.getElementById('storyMode');
+ if(!launch||!mode)return;
+ const scenes=[...mode.querySelectorAll('.story-scene')],dots=document.getElementById('storyDots'),next=document.getElementById('storyNext'),progress=document.getElementById('storyProgress');
+ let index=0,timer=null,started=false;
+ scenes.forEach(()=>{const dot=document.createElement('i');dots.appendChild(dot)});
+ const dotEls=[...dots.children];
+ function paint(){
+  scenes.forEach((s,i)=>s.classList.toggle('current',i===index));
+  dotEls.forEach((d,i)=>d.classList.toggle('on',i===index));
+  progress.style.width=((index+1)/scenes.length*100)+'%';
+  next.textContent=index===0?'Bắt đầu hành trình →':index===scenes.length-1?'Khám phá website ↗':'Tiếp tục →';
+ }
+ function close(){
+  clearTimeout(timer);mode.classList.remove('active');mode.setAttribute('aria-hidden','true');document.body.style.overflow='';
+  if(started&&index===scenes.length-1){document.getElementById('knowledge')?.scrollIntoView({behavior:'smooth'});}
+ }
+ function advance(){
+  if(!mode.classList.contains('active'))return;
+  if(index<scenes.length-1){index++;paint();timer=setTimeout(advance,6500);}
+  else{next.textContent='Khám phá website ↗';}
+ }
+ function open(){
+  index=0;started=true;mode.classList.add('active');mode.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';paint();
+  clearTimeout(timer);timer=setTimeout(advance,6200);
+ }
+ launch.addEventListener('click',open);
+ next.addEventListener('click',()=>{clearTimeout(timer);if(index<scenes.length-1){index++;paint();timer=setTimeout(advance,6500)}else close()});
+ document.getElementById('storySkip').addEventListener('click',close);
+ document.getElementById('storyClose').addEventListener('click',close);
+ document.addEventListener('keydown',e=>{if(!mode.classList.contains('active'))return;if(e.key==='Escape'){close()}else if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();next.click()}else if(e.key==='ArrowLeft'&&index>0){clearTimeout(timer);index--;paint();timer=setTimeout(advance,6500)}});
+})();
+
 </script>
 </body>
 </html>
