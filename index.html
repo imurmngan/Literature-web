@@ -43,7 +43,7 @@ h1,h2,h3,p{margin-top:0}h1,h2{font-family:'Playfair Display',serif;letter-spacin
    <div class="cover-art" id="sunGraphic" role="button" tabindex="0" aria-label="Chạm vào mặt trời để bắt đầu trình chiếu"><div class="sun-orbit"></div><div class="sun-core"><span>☼</span></div></div>
    <div class="slide-inner">
     <div class="eyebrow reveal">SỬ THI ANH HÙNG · VĂN HÓA Ê-ĐÊ</div>
-    <div class="pill reveal d1">NHÓM 6 · LỚP 10A06</div>
+    <div class="pill reveal d1">MINH NGÂN-10A06</div>
     <h1 class="reveal d2">Đăm Săn đi bắt <em>Nữ Thần Mặt Trời</em></h1>
     <p class="lead reveal d3">Một hành trình vượt khỏi giới hạn của con người — nơi khát vọng gặp gỡ quyền năng thần linh và quy luật tự nhiên.</p>
     <div class="rule reveal d4"></div>
@@ -242,7 +242,10 @@ h1,h2,h3,p{margin-top:0}h1,h2{font-family:'Playfair Display',serif;letter-spacin
   if(old!==index)window.dispatchEvent(new CustomEvent('slidechange',{detail:{index}}));
  }
  function begin(){started=true;deck.classList.add('started');show(1);}
- document.getElementById('launch').addEventListener('click',begin);\n const sunGraphic=document.getElementById('sunGraphic');\n sunGraphic.addEventListener('click',begin);\n sunGraphic.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();begin()}});
+ document.getElementById('launch').addEventListener('click',begin);
+ const sunGraphic=document.getElementById('sunGraphic');
+ sunGraphic.addEventListener('click',begin);
+ sunGraphic.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();begin()}});
  prev.addEventListener('click',()=>show(index-1));
  next.addEventListener('click',()=>show(index+1));
  document.getElementById('restart').addEventListener('click',()=>{started=false;show(0)});
